@@ -34,18 +34,16 @@
 					<h3 class="panel-title">Tools</h3>
 				</div>
 				<div class="panel-body" id="tools">
-					<button class="btn btn-default form-control" type="button">Add Vector</button>
-					<button class="btn btn-default form-control" type="button">Add Image</button>
-					<button class="btn btn-default form-control" type="button">Add Color</button>
+					<button class="btn btn-default form-control" type="button" id="btnFrames">Add Frames</button>
+					<button class="btn btn-default form-control" type="button" id="btnColor">Add Color</button>
 					<hr>
-					<button class="btn btn-default form-control" type="button">Set Length</button>
-					<button class="btn btn-default form-control" type="button">Remove</button>
-					<hr>
-					<button class="btn btn-default form-control" type="button">Move Up</button>
-					<button class="btn btn-default form-control" type="button">Move Down</button>
+					<button class="btn btn-default form-control" type="button" id="btnLength">Set Length</button>
+					<button class="btn btn-default form-control" type="button" id="btnUp">Move Up</button>
+					<button class="btn btn-default form-control" type="button" id="btnDown">Move Down</button>
+					<button class="btn btn-default form-control" type="button" id="btnRemove">Remove</button>
 					<hr>
 					<label>Current Frame</label>
-					<div class="thumbnail" id="thumbnail"></div>
+					<div class="thumbnail" id="imgThumbnail"></div>
 				</div>
 			</div>
 		</div>
@@ -56,24 +54,24 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-6">
-						<label>FPS</label> <input class="form-control" type="number" value="30"/>
-						<label>Original height</label> <input class="form-control" type="number" value="1280"/>
-						<label>Original Width</label> <input class="form-control" type="number" value="720"/>
+						<label>FPS</label> <input class="form-control" type="number" value="30" id="txtFps"/>
+						<label>Original height</label> <input class="form-control" type="number" value="1280" id="txtHeigth"/>
+						<label>Original Width</label> <input class="form-control" type="number" value="720" id="txtWidth"/>
 					</div>
 					<div class="col-md-6">			
-						<label>Audio File<small> (.ogg)</small></label> <input class="form-control" type="file"/>
-						<label>Output Path</label> <input class="form-control" type="file" webkitdirectory directory multiple/>				
-						<label>Output Filename<small> (.svm)</small></label> <input class="form-control" type="text"/>
+						<label>Audio File<small> (.ogg)</small></label> <input class="form-control" type="file" id="fileAudio"/>
+						<label>Output Path</label> <input class="form-control" type="file" id="folderOutput" webkitdirectory directory/>				
+						<label>Output Filename<small> (.svm)</small></label> <input class="form-control" type="text" id="txtOutput"/>
 					</div>
 					<hr>
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<button class="btn btn-primary form-control" type="button">Encode</button>
-						<div class="progress col-md-12 hidden" id="progressBar">
-							<div class="progress-bar progress-bar-disabled" role="progressbar" style="width: 0%;">0/0</div>
-						</div>
+						<button class="btn btn-primary form-control" type="button" id="btnEncode">Encode</button>
 					</div>
 				</div>
 			</div>
+		</div>		
+		<div class="progress hidden" id="progressBar">
+			<div class="progress-bar progress-bar-disabled" role="progressbar" style="width: 0%;">0/0</div>
 		</div>
 		<script>
 			window.$ = window.jQuery = require('./assets/jquery/jquery-3.1.1.min.js');

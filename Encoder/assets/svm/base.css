@@ -46,8 +46,15 @@ body {
 }
 
 #progressBar {
-	height: 20px;
-	margin-top: 10px;
+    position: fixed;
+    bottom: 0;
+    height: 25px;
+    box-shadow: black 1px 1px 5px;
+    width: calc(100% - 30px);
+}
+
+#progressBar > div {
+	line-height: 25px;
 }
 
 #thumbnail{
