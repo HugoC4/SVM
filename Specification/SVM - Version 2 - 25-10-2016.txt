@@ -1,0 +1,38 @@
+SVM (Scalable Vector Media) - Version 2
+
+Structure
+[identifier]
+    char[3] Container = SVM
+    unsigned short Version = 2
+[/identifier]
+[header]
+    unsigned short FPS >= 1
+    unsigned long Framecount >= FPS
+    unsigned long Original Width >= 1
+    unsigned long Original Height >= 1
+    unsigned long Audio Pointer
+[/header]
+[frames xframeCount]
+    unsigned long Framesize
+    [frame-repeat (optional)]
+        unsigned long Repeat Amount >= 1
+    [/frame-repeat]
+    char[Framesize] SVG Data
+[/frames]
+[audio]
+    unsigned long Audiosize
+    char[Audiosize] Audio Data
+[/audio]
+
+Notes:
+    All integers are Big Endians.
+
+    The SVG Data of each Frame is gzipped.
+
+    If the Framesize of a Frame is NULL (0x0), then
+    no new Frame must be rendered. Instead, the last
+    active Frame will remain active for the following
+    Repeat Amount Frames, inclusively.
+	
+    If The Audiosize of the Audio is NULL (0x0), then
+    no Audio will be loaded/played.

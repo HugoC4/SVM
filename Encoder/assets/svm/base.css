@@ -1,0 +1,85 @@
+body {
+	padding: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #a6a6a6;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #909090;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #707070;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track:hover, 
+::-webkit-scrollbar-track:active, ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.panel[class*=col-] {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.panel-body > .btn{
+	margin-bottom: 5px;
+    height: 30px;
+    line-height: 10px;
+}
+
+.panel-body input {
+	margin-bottom: 10px;
+}
+
+.panel-body > hr {
+	margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#progressBar {
+	height: 20px;
+	margin-top: 10px;
+}
+
+#thumbnail{
+	padding: 0;
+	min-height: 128px;
+	margin-bottom: 0;
+	background-color: black;
+}
+
+#thumbnail > img, #thumbnail > svg {
+	height: 100%;
+	width: 100%;
+}
+
+#filesTable {
+	margin-bottom: 0;
+}
+
+#filesTable td {
+	vertical-align: middle;
+}
+
+#filesTable td:nth-child(2) > img, #files td:nth-child(2) > svg {
+	max-height: 35px;
+	max-width: 100px;
+	margin: auto;
+}
+
+#filesTable th {
+	border-bottom: 1px solid #464545;
+}
+
+.panel-body {
+	overflow: auto;
+}

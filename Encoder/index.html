@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SVM Encoder | Scalable Vector Media</title>
+		<link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="./assets/svm/base.css">
+	</head>
+	<body>
+		<div class="col-md-8 col-sm-8 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Files</h3>
+				</div>
+				<div class="panel-body" id="files">
+					<table class="table table-condensed" id="filesTable">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th></th>
+								<th>Path</th>
+								<th>Length</th>
+								<th>Filesize</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Tools</h3>
+				</div>
+				<div class="panel-body" id="tools">
+					<button class="btn btn-default form-control" type="button">Add Vector</button>
+					<button class="btn btn-default form-control" type="button">Add Image</button>
+					<button class="btn btn-default form-control" type="button">Add Color</button>
+					<hr>
+					<button class="btn btn-default form-control" type="button">Set Length</button>
+					<button class="btn btn-default form-control" type="button">Remove</button>
+					<hr>
+					<button class="btn btn-default form-control" type="button">Move Up</button>
+					<button class="btn btn-default form-control" type="button">Move Down</button>
+					<hr>
+					<label>Current Frame</label>
+					<div class="thumbnail" id="thumbnail"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Information & Output</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<label>FPS</label> <input class="form-control" type="number" value="30"/>
+						<label>Original height</label> <input class="form-control" type="number" value="1280"/>
+						<label>Original Width</label> <input class="form-control" type="number" value="720"/>
+					</div>
+					<div class="col-md-6">			
+						<label>Audio File<small> (.ogg)</small></label> <input class="form-control" type="file"/>
+						<label>Output Path</label> <input class="form-control" type="file" webkitdirectory directory multiple/>				
+						<label>Output Filename<small> (.svm)</small></label> <input class="form-control" type="text"/>
+					</div>
+					<hr>
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<button class="btn btn-primary form-control" type="button">Encode</button>
+						<div class="progress col-md-12 hidden" id="progressBar">
+							<div class="progress-bar progress-bar-disabled" role="progressbar" style="width: 0%;">0/0</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			window.$ = window.jQuery = require('./assets/jquery/jquery-3.1.1.min.js');
+			require("./assets/bootstrap/bootstrap.min.js");		
+			window.Mustache = require("mustache");
+			window.fs = require("fs");
+			window.templates = {
+				"item-row": fs.readFileSync("./assets/templates/item-row.mst", 'utf8')
+			};			
+			
+			$(()=>{
+				window.resize = () => {
+					$("#files").css("max-height", $("#tools").outerHeight());
+				};
+				$(document).resize(window.resize);
+				window.resize();
+			
+				var path = "D:/Projects/nodejs/files/60/";
+				var i = 0;
+				var files = fs.readdirSync(path);
+				for (var i in files){
+					if (fs.statSync(path+files[i]).isDirectory())
+						continue;
+						
+					var svg = fs.readFileSync(path+files[i], 'utf8');
+					console.log(i)
+					$("#files tbody").append(Mustache.render(templates['item-row'], {
+						'count': i, 
+						'preview': svg, 
+						'path': files[i], 
+						'length': 1, 
+						'size': (svg.length/1024).toFixed(1)
+					}));
+				}
+			});			
+		</script>
+	</body>
+</html>

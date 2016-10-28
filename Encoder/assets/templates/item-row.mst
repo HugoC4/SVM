@@ -1,0 +1,7 @@
+<tr>
+	<td>{{count}}</td>
+	<td>{{{preview}}}</td>
+	<td>{{path}}</td>
+	<td>{{length}}</td>
+	<td>{{size}}kb</td>
+</tr>

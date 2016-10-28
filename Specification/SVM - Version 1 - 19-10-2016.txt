@@ -1,0 +1,28 @@
+VV (Vector Video | SVM alpha) - Version 1
+
+Structure
+[identifier]
+    char[2] Identifier = VV
+    char[4] Personal Emoji = 😈
+    unsigned short Version = 1
+[/identifier]
+[header]
+    unsigned short FPS
+    unsigned long Framecount
+    unsigned long Aspect_h
+    unsigned long Aspect_w
+    unsigned long Audio Pointer
+[/header]
+[frames xframeCount]
+    unsigned long Framesize
+    char[Framesize] SVG Data
+[/frames]
+[audio]
+    unsigned long Audiosize
+    char[Audiosize] Audio Data
+[/audio]
+
+Notes:
+    All integers are Big Endians.
+
+    The SVG Data of each Frame is gzipped.
